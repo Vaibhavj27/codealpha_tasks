@@ -23,7 +23,7 @@ const ProjectArr=[
 function Projects() {
   return (
     <>
-    <div>
+    <div id='projects'>
         <motion.h1 
         whileInView={{
             opacity:1,

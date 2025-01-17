@@ -3,7 +3,7 @@ import profile from '../assets/IMG_1173.png'
 import { motion } from "motion/react"
 function Hero() {
   return (
-    <div className='flex  flex-wrap  items-center  my-28 '>
+    <div className='flex  flex-wrap  items-center  my-28 ' id='home'>
         <div className='w-full lg:w-1/2 '>
         <div className='flex flex-col items-center lg:items-start justify-center lg:pl-20'>
             <motion.h1 
