@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-
+import { motion } from "motion/react"
 
 
 
@@ -37,7 +37,21 @@ function Contact() {
 
 
   return (
-    <div className="m-20 text-neutral-300" id='contact' >
+    <motion.div 
+    
+         whileInView={{
+             opacity:1,
+             y:0
+         }}
+         initial={{
+            opacity:0,
+            y:50
+         }}
+         transition={{
+          duration:1,
+          delay:0
+         }}
+    className="m-20 text-neutral-300" id='contact' >
         <h1 className='text-neutral-300 text-2xl p-5 text-center'>Get in Touch</h1>
         <form onSubmit={onSubmit}>
      <div className='w-fit m-auto bg-neutral-900 border-neutral-600 border-spacing-1 p-10 rounded-md flex flex-col  gap-10' >
@@ -63,7 +77,7 @@ function Contact() {
         
         </div>
         </form>
-    </div>
+    </motion.div>
   )
 }
 
