@@ -10,24 +10,24 @@ function Nav() {
         <div className='flex flex-shrink-0 items-center'>
             <h1 className=' text-neutral-300 text-6xl px-4'>VJ</h1>
         </div>
-        <div className='flex gap-7 items-center text-neutral-300 font-light'>
+        <div className=' gap-7 items-center text-neutral-300 font-light hidden lg:flex'>
              <Link to="home" 
       spy={true} 
       smooth={true} 
       offset={50} 
-      duration={500} >Home</Link>
+      duration={500} className='hover:brightness-200'>Home</Link>
 
 <Link to="projects" 
       spy={true} 
       smooth={true} 
       offset={50} 
-      duration={500} >Projects</Link>
+      duration={500}className='hover:brightness-200' >Projects</Link>
 
 <Link to="contact" 
       spy={true} 
       smooth={true} 
       offset={50} 
-      duration={500} >Contact</Link>
+      duration={500} className='hover:brightness-200'>Contact</Link>
         </div>
         <div className='flex gap-5 items-center text-neutral-300 text-2xl'>
              <a href="https://github.com/Vaibhavj27"><FaGithub/></a>
