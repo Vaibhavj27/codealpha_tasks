@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #eaf9cd;
+            margin: 0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .gallery-item {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .lightbox img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        .nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        .prev {
+            left: 20px;
+        }
+        .next {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Gallery</h1>
+    <div class="gallery">
+        <img src="https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8fA%3D%3D" alt="Image 1" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8M3x8fGVufDB8fHx8fA%3D%3D" alt="Image 2" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1542856391-010fb87dcfed?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MjZ8fHxlbnwwfHx8fHw%3D" alt="Image 3" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1542708993627-b6e5bbae43c4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fHw%3D" alt="Image 4" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1542810104-c5f07c7357ff?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTl8fHxlbnwwfHx8fHw%3D" alt="Image 5" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1527086983597-b4d44c4a66d0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mjd8fHxlbnwwfHx8fHw%3D" alt="Image 6" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1542891973-afee23ae9770?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MzZ8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1476673160081-cf065607f449?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NDB8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543310465-f4d3ca5a2a25?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NDd8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543241964-2aff6a70473f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NDl8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543218241-f5f4e1cbf4e1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NTN8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543158266-0066955047b1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NTV8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543227013-d4bb04c3eec8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NTh8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543107097-ffe418c8d0f0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8NjR8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+        <img src="https://images.unsplash.com/photo-1543039717-b4d407223b4c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8Njl8fHxlbnwwfHx8fHw%3D" alt="Image 7" class="gallery-item" loading="lazy" onclick="openLightbox(this.src)">
+    </div>
+    
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="">
+        <div class="nav prev" onclick="prevImage()">&#10094;</div>
+        <div class="nav next" onclick="nextImage()">&#10095;</div>
+    </div>
+    
+    <script>
+        let images = document.querySelectorAll(".gallery-item");
+        let lightbox = document.getElementById("lightbox");
+        let lightboxImg = document.getElementById("lightbox-img");
+        let currentIndex = 0;
+
+        function openLightbox(src) {
+            lightbox.style.display = "flex";
+            lightboxImg.src = src;
+            currentIndex = [...images].findIndex(img => img.src === src);
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = "none";
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            lightboxImg.src = images[currentIndex].src;
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            lightboxImg.src = images[currentIndex].src;
+        }
+    </script>
+</body>
+</html>
